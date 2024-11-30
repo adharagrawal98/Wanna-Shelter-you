@@ -40,37 +40,30 @@ const SignUp = () => {
             const result = await signInWithPopup(auth, provider);
             const user = result.user;
             const userDoc = await getDoc(doc(db, 'users', user.uid));
-
-            // Check if the user document exists
             if (userDoc.exists()) {
                 const existingRole = userDoc.data().role;
-
-                // Check if existing user role matches the selected role
                 if (existingRole === role) {
-                    // Alert for already existing user in the same role
                     Swal.fire({
                         title: 'User already exists',
                         text: `You are already registered as a ${role}. Please log in instead.`,
                         icon: 'warning',
                         confirmButtonText: 'Okay'
                     }).then(() => {
-                        navigate('/login'); // Redirect to login page after alert
+                        navigate('/login');
                     });
-                    return; // Stop execution if user already exists with the same role
+                    return;
                 } else {
-                    // Alert if the user exists but in a different role
                     Swal.fire({
                         title: 'User Role Mismatch',
                         text: `You are registered as a ${existingRole}. Please log in instead.`,
                         icon: 'warning',
                         confirmButtonText: 'Okay'
                     }).then(() => {
-                        navigate('/login'); // Redirect to login page after alert
+                        navigate('/login');
                     });
-                    return; // Stop execution if user role doesn't match
+                    return;
                 }
             } else {
-                // New user signup
                 await setDoc(doc(db, 'users', user.uid), {
                     role: role,
                     email: user.email,
@@ -85,30 +78,26 @@ const SignUp = () => {
                 });
 
                 if (role === "Shelter Staff") {
-                    setShowCharityForm(true); // Show charity details form for Shelter Staff
-                    return; // Prevent navigation to login until form is submitted
+                    setShowCharityForm(true);
+                    return;
                 } else if (role === "Donor") {
-                    // Check if donor already exists
                     const donorDoc = await getDoc(doc(db, "donors", user.uid));
                     if (donorDoc.exists()) {
-                        // Alert for already existing donor
                         Swal.fire({
                             title: 'User already exists',
                             text: 'You have already signed up as a donor. Please log in instead.',
                             icon: 'warning',
                             confirmButtonText: 'Okay'
                         }).then(() => {
-                            navigate('/login'); // Redirect to login page after alert
+                            navigate('/login');
                         });
-                        return; // Stop execution if donor already exists
+                        return;
                     }
-                    setDonorData({ ...donorData, email: user.email }); // Set the email for the donor
-                    setShowDonorForm(true); // Show donor details form for Donor
-                    return; // Prevent navigation to login until form is submitted
+                    setDonorData({ ...donorData, email: user.email });
+                    setShowDonorForm(true);
+                    return;
                 }
             }
-
-            // Redirect to login page after successful signup for Donor role
             navigate('/login');
         } catch (error) {
             Swal.fire({
@@ -140,17 +129,15 @@ const SignUp = () => {
     const handleCharityFormSubmit = (e) => {
         e.preventDefault();
         console.log("Charity Details Submitted:", charityData);
-        // Logic to save charity data
     };
 
     const handleDonorFormSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const user = auth.currentUser; // Retrieve the currently authenticated user
+            const user = auth.currentUser;
 
             if (user) {
-                // Save donor details in Firestore
                 await setDoc(doc(db, "donors", user.uid), {
                     ...donorData,
                     uid: user.uid,
@@ -163,8 +150,7 @@ const SignUp = () => {
                     icon: 'success',
                     confirmButtonText: 'Okay',
                 }).then(() => {
-                    // Redirect to login page after closing the modal
-                    navigate('/login'); // Change '/login' to your login page route
+                    navigate('/login');
                 });
             } else {
                 throw new Error("User not authenticated");

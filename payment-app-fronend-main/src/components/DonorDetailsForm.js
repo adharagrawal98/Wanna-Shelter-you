@@ -34,9 +34,9 @@ const DonorDetailsForm = ({ donorData, handleInputChange, handleFormSubmit }) =>
                 <input
                     type="email"
                     name="email"
-                    value={donorData.email} // This will be set in the parent component
-                    readOnly // Make it read-only since it's fetched from Google
-                    className="w-full p-2 border rounded bg-gray-200 cursor-not-allowed" // Optional: styling for a read-only field
+                    value={donorData.email}
+                    readOnly
+                    className="w-full p-2 border rounded bg-gray-200 cursor-not-allowed"
                     required
                 />
             </label>

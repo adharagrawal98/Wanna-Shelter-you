@@ -23,10 +23,10 @@ const CharityDetailsForm = ({ charityData, handleInputChange }) => {
             script.src = `https://maps.googleapis.com/maps/api/js?key=${REACT_APP_GOOGLE_MAPS_KEY}&libraries=places`;
             script.async = true;
             script.onload = () => setGoogleLoaded(true);
-            script.onerror = () => setScriptLoadingError(true); // Handle script loading error
+            script.onerror = () => setScriptLoadingError(true);
             document.body.appendChild(script);
         } else {
-            setGoogleLoaded(true); // If script is already loaded, set the state
+            setGoogleLoaded(true);
         }
     };
 
@@ -38,27 +38,24 @@ const CharityDetailsForm = ({ charityData, handleInputChange }) => {
     const submitForm = async (e) => {
         e.preventDefault();
         try {
-            const user = auth.currentUser; // Get the authenticated user
+            const user = auth.currentUser;
             if (user) {
-                // Include the UID and other necessary details in the charity data
                 const charityDetailsToSave = {
                     ...charityData,
-                    uid: user.uid, // Save the UID as a field in the document
+                    uid: user.uid,
                     lat: selectedLocation.lat,
                     lng: selectedLocation.lng,
                 };
 
-                // Save the document in the `charityDetails` collection using the UID as the document ID
                 await setDoc(doc(db, "charityDetails", user.uid), charityDetailsToSave);
 
-                // Show a success message
                 Swal.fire({
                     title: 'Details Saved',
                     text: 'Your charity details have been saved successfully!',
                     icon: 'success',
                     confirmButtonText: 'Okay',
                 }).then(() => {
-                    window.location.href = '/login'; // Redirect user after saving
+                    window.location.href = '/login';
                 });
             } else {
                 throw new Error("User not authenticated");
@@ -78,7 +75,6 @@ const CharityDetailsForm = ({ charityData, handleInputChange }) => {
     const handleAddressSelect = (address) => {
         handleInputChange({ target: { name: "address", value: address } });
         setSelectedAddress(address);
-        // Do not close the modal here
     };
 
     const confirmLocation = () => {
@@ -179,18 +175,6 @@ const CharityDetailsForm = ({ charityData, handleInputChange }) => {
                     required
                 />
             </label>
-            {/* <label className="block mb-4">
-                PayPal Client SECRET:
-                <input
-                    type="text"
-                    name="PayPalClientSecret"
-                    value={charityData.paypalSecret}
-                    onChange={handleInputChange}
-                    className="w-full p-2 border rounded"
-                    required
-                />
-            </label> */}
-
             <button
                 type="submit"
                 className="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 transition duration-200"
@@ -216,7 +200,6 @@ const CharityDetailsForm = ({ charityData, handleInputChange }) => {
                                     setSelectedAddress={handleAddressSelect}
                                 />
                                 <MapComponent selectedLocation={selectedLocation} />
-                                {/* Display the selected address in full width */}
                                 <div className="mt-4 w-full">
                                     <label className="block mb-2">Selected Address:</label>
                                     <textarea

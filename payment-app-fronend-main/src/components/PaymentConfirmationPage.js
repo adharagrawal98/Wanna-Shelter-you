@@ -16,19 +16,17 @@ const PaymentConfirmationPage = () => {
     useEffect(() => {
         const charityIDParam = localStorage.getItem("charityID");
         const orderID = localStorage.getItem("paypalOrderId");
-
         console.log("charityID", charityIDParam);
         console.log("orderID", orderID);
 
         setOrderID(orderID);
         setCharityID(charityIDParam);
 
-        // Update Firestore with the orderID
         if (charityIDParam && orderID) {
             const updateOrderIDInFirestore = async () => {
                 try {
                     const charityDocRef = doc(db, 'charityDetails', charityIDParam);
-                    await updateDoc(charityDocRef, { orderID: orderID }); // Update Firestore with the orderID
+                    await updateDoc(charityDocRef, { orderID: orderID });
                     console.log("Order ID successfully updated in Firestore.");
                 } catch (error) {
                     console.error("Error updating Firestore with orderID:", error);
@@ -62,7 +60,6 @@ const PaymentConfirmationPage = () => {
         }
     }, [location]);
 
-    // Generate the QR code image URL with authorizationID, charityID, and registrationNumber
     const generateQrCodeData = (orderID, charityID, registrationNumber) => {
         const qrContent = JSON.stringify({
             orderID: orderID,
@@ -80,7 +77,6 @@ const PaymentConfirmationPage = () => {
     };
 
     useEffect(() => {
-        // Generate QR code when authorizationID, charityID, and registrationNumber are available
         if (orderID && charityID && charity?.registrationNumber) {
             generateQrCodeData(orderID, charityID, charity.registrationNumber);
         }
@@ -147,7 +143,6 @@ const PaymentConfirmationPage = () => {
             <div ref={printRef} className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md mx-auto flex flex-col items-center">
                 <h1 className="text-3xl font-bold mb-6 text-center">Payment Confirmation</h1>
 
-                {/* QR Code Section */}
                 <div className="flex items-center justify-center w-full mb-6">
                     {qrCodeData ? (
                         <img
@@ -159,8 +154,6 @@ const PaymentConfirmationPage = () => {
                         <p className="text-gray-500">QR Code will appear here.</p>
                     )}
                 </div>
-
-                {/* Charity Details */}
                 {charity ? (
                     <div className="text-center mb-6">
                         <h2 className="text-2xl font-semibold mb-2">{charity.charityName}</h2>
@@ -175,20 +168,15 @@ const PaymentConfirmationPage = () => {
                     <p className="text-gray-500 text-center mb-6">Error loading charity details.</p>
                 )}
 
-                {/* Instructions Section */}
                 <div className="text-center mb-6">
                     <h3 className="text-lg font-semibold text-gray-800">Instructions for Homeless:</h3>
                     <p className="text-gray-600 mb-5">
                         <strong>Show this QR code at the charity to get shelter.</strong>
                     </p>
                 </div>
-
-                {/* Bottom-right Share Message */}
                 <p className="text-gray-500 text-xs font-semibold text-right max-w-xs mb-4">
                     **<strong>Instructions for Donor:</strong> Share this QR code with someone in need, and they can use it to get shelter at our partnered charity.**
                 </p>
-
-                {/* Print Receipt Button */}
                 <button
                     onClick={handlePrint}
                     className="print-button bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg shadow hover:bg-blue-700 transition duration-200 mt-4"

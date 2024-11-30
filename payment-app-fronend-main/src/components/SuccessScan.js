@@ -12,7 +12,7 @@ const SuccessScan = () => {
     useEffect(() => {
         const fetchCharityDetails = async () => {
             try {
-                const db = getFirestore(); // Assume Firestore is already initialized
+                const db = getFirestore();
                 const charityID = localStorage.getItem('charityID');
 
                 if (!charityID) {
@@ -43,7 +43,7 @@ const SuccessScan = () => {
             navigate('/shelter-dashboard');
         }, 5000);
 
-        return () => clearTimeout(timer); // Cleanup timeout on unmount
+        return () => clearTimeout(timer);
     }, [navigate]);
 
     if (loading) {
@@ -74,8 +74,6 @@ const SuccessScan = () => {
                         style={{ strokeDasharray: "24", strokeDashoffset: "0" }}
                     />
                 </svg>
-
-                {/* Text below tick */}
                 <h1 className="text-4xl font-bold text-green-700 mt-6">Payment Successful!</h1>
                 <p className="text-lg text-gray-700 mt-4">
                     Payment of <span className="font-semibold">£{amount}</span> has been successfully credited to <span className="font-semibold">{charityName}</span>.

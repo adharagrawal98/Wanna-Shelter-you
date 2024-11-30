@@ -1,6 +1,6 @@
 // Testimonials.js
 import React from 'react';
-import testimonialImage1 from '../assets/image1.jpg'; // Update paths to your images
+import testimonialImage1 from '../assets/image1.jpg';
 import testimonialImage2 from '../assets/image2.jpg';
 import testimonialImage3 from '../assets/image3.jpg';
 import testimonialImage4 from '../assets/image4.jpg';
@@ -42,7 +42,6 @@ const Testimonials = () => {
                         key={testimonial.id}
                         className="border rounded-lg overflow-hidden shadow-md cursor-pointer hover:shadow-lg transition-shadow duration-300 transform hover:scale-105"
                     >
-                        {/* Increased the height of the image */}
                         <img src={testimonial.image} alt={testimonial.name} className="w-full h-60 object-cover" />
                         <div className="p-4">
                             <h3 className="font-semibold text-lg">{testimonial.name}</h3>

@@ -1,10 +1,9 @@
-// src/components/Home.js
 import React from 'react';
 import backgroundImage from '../assets/home1.jpg';
-import donateImage from '../assets/donate_image.jpg'; // Correctly import the image
+import donateImage from '../assets/donate_image.jpg';
 import qrImage from '../assets/QR_image.jpg';
 import shelterImage from '../assets/shelter_image.jpg';
-import { useNavigate } from 'react-router-dom'; // Change to useNavigate
+import { useNavigate } from 'react-router-dom';
 
 const charityDetails = {
     name: "Local Homeless Shelter",
@@ -35,58 +34,53 @@ const Home = ({ user }) => {
                     </p>
                 </div>
             </div>
-
-            {/* How It Works Section */}
             <div className="w-full bg-gray-100 py-20 flex flex-col items-center">
                 <h2 className="text-2xl md:text-4xl font-bold mb-10 text-gray-700">How We Work?</h2>
-
-                {/* Steps Container */}
                 <div className="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-8">
-                    {/* Step 1: Donate */}
                     <div className="flex flex-col items-center text-center p-6 bg-white rounded-lg shadow-md w-64">
                         <img
-                            src={donateImage} // Use the imported image here
+                            src={donateImage}
                             alt="Donate illustration"
-                            className="w-50 h-60 mb-4 object-cover" // Adjust width and height as needed
+                            className="w-50 h-60 mb-4 object-cover"
                         />
                         <div className="text-3xl font-semibold mb-4">Donate</div>
                         <p className="text-gray-600"><strong>Choose</strong> a shelter and <strong>Donate</strong> directly to support the homeless community</p>
                     </div>
 
-                    {/* Arrow */}
+
                     <div className="hidden md:block text-3xl font-bold text-gray-500">→</div>
 
-                    {/* Step 2: Receive QR Code */}
+
                     <div className="flex flex-col items-center text-center p-6 bg-white rounded-lg shadow-md w-64">
                         <img
-                            src={qrImage} // Use the imported image here
+                            src={qrImage}
                             alt="QR Code"
-                            className="w-50 h-52 mb-4 object-cover" // Adjust width and height as needed
+                            className="w-50 h-52 mb-4 object-cover"
                         />
                         <div className="text-3xl font-semibold mb-4">Receive QR Code</div>
                         <p className="text-gray-600">After donating, <strong>Receive</strong> a unique QR code to <strong>Share</strong> with someone in need</p>
                     </div>
 
-                    {/* Arrow */}
+
                     <div className="hidden md:block text-3xl font-bold text-gray-500">→</div>
 
-                    {/* Step 3: Access Shelter */}
+
                     <div className="flex flex-col items-center text-center p-6 bg-white rounded-lg shadow-md w-64">
                         <img
-                            src={shelterImage} // Use the imported image here
+                            src={shelterImage}
                             alt="homeless receives shelter without any efforts"
-                            className="w-59 h-60 mb-4 object-cover" // Adjust width and height as needed
+                            className="w-59 h-60 mb-4 object-cover"
                         />
                         <div className="text-3xl font-semibold mb-4">Shelter</div>
                         <p className="text-gray-600">Individuals in need can <strong>Access Shelter</strong> through the shared QR Code at our facilities</p>
                     </div>
                 </div>
 
-                {/* Find Shelters Button */}
+
                 <div className="mt-10">
                     <button
                         className="px-6 py-3 bg-green-500 text-white font-bold rounded-lg shadow-lg hover:bg-green-600 transition duration-200"
-                        onClick={() => navigate('/donor-map', { state: { charity: charityDetails } })} // Update to use navigate
+                        onClick={() => navigate('/donor-map', { state: { charity: charityDetails } })}
                     >
                         Find Shelters Nearby to Donate
                     </button>

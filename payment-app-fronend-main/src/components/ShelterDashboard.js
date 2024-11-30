@@ -12,7 +12,7 @@ const ShelterDashboard = ({ user }) => {
     const [scannedData, setScannedData] = useState(null);
     const [isScannerVisible, setIsScannerVisible] = useState(false);
     const db = getFirestore();
-    const navigate = useNavigate(); // Initialize navigate
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchcharityData = async () => {
@@ -87,14 +87,12 @@ const ShelterDashboard = ({ user }) => {
         setScannedData(null);
     };
 
-    // Navigate to VerifyPage with the scanned data
     const handleVerify = () => {
         navigate('/verify-page', { state: { scannedData: scannedData, charityData: charityData } });
     };
 
     return (
         <div className="p-4 md:p-8">
-            {/* Quick Actions */}
             <div className="flex justify-between items-center mb-6">
                 <h2 className="text-3xl font-semibold">Shelter Dashboard</h2>
                 <div className="flex space-x-4">
@@ -107,25 +105,19 @@ const ShelterDashboard = ({ user }) => {
                 </div>
             </div>
 
-            {/* Main Content Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                {/* Section 1: charity Overview */}
                 <div className="bg-white p-6 rounded-lg shadow-md">
                     <h3 className="text-xl font-semibold mb-4">Shelter Overview</h3>
                     <p className="text-lg font-bold">Charity Name: {charityData.charityName}</p>
                     <p className="text-lg font-bold">Total Beds: {charityData.bedsAvailable}</p>
                     <p className="text-lg font-bold">Charity Registration Number: {charityData.registrationNumber}</p>
                 </div>
-
-                {/* Section 2: Contact Information */}
                 <div className="bg-white p-6 rounded-lg shadow-md">
                     <h3 className="text-xl font-semibold mb-4">Contact Information</h3>
                     <p><span className="font-bold">Email:</span> {userEmail}</p>
                     <p><span className="font-bold">Phone:</span> {charityData.contactNumber}</p>
                     <p><span className="font-bold">Address:</span> {charityData.address}</p>
                 </div>
-
-                {/* Section 3: Bed Information */}
                 <div className="bg-white p-6 rounded-lg shadow-md relative">
                     <h3 className="text-xl font-semibold mb-4">Bed Information</h3>
                     <p><span className="font-bold">Beds Available:</span> {charityData.bedsAvailable}</p>
@@ -140,8 +132,6 @@ const ShelterDashboard = ({ user }) => {
 
 
             </div>
-
-            {/* Scan Button */}
             <div className="flex justify-center mb-4">
                 <button
                     onClick={toggleScanner}
@@ -151,8 +141,6 @@ const ShelterDashboard = ({ user }) => {
                     {isScannerVisible ? "Hide Scanner" : "Scan QR Code"}
                 </button>
             </div>
-
-            {/* QR Code Scanner Modal */}
             {isScannerVisible && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
                     <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
@@ -177,8 +165,6 @@ const ShelterDashboard = ({ user }) => {
                     </div>
                 </div>
             )}
-
-            {/* Scanned Data Table */}
             {scannedData && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
                     <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
@@ -201,8 +187,6 @@ const ShelterDashboard = ({ user }) => {
                     </div>
                 </div>
             )}
-
-            {/* Edit Bed Information Modal */}
             {isEditBedInfoOpen && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
                     <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">

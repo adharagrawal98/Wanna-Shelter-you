@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+<!-- Homeless Shelter Donation Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Project Overview
 
-## Available Scripts
+This platform bridges donors and homeless shelters, allowing for secure and direct funding of shelter stays. It leverages PayPal APIs and QR Code technology to ensure transparency, efficiency, and trust in the donation process. A novel feature includes QR Code Receipts, acting as redeemable objects that enable shelters to claim funds directly. -->
 
-In the project directory, you can run:
+<!-- Key Features
 
-### `npm start`
+	•	Secure Donations: Integrates PayPal to process real-time donations securely.
+	•	QR Code Receipts: Dynamic QR codes link transactions to specific shelters and act as redeemable objects.
+	•	Geospatial Mapping: Donors can locate nearby shelters using Google Maps.
+	•	Shelter Dashboard: Allows shelters to validate donations, view resources, and manage payments.
+	•	Role-Based Access Control (RBAC): Ensures functionalities tailored to donors and shelter staff. -->
+<!--
+    <!-- Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+	•	Backend: Node.js, Express.js, Firebase (Firestore)
+	•	Frontend: React.js, Tailwind CSS, Material-UI
+	•	APIs: PayPal Checkout API, Google Maps API
+	•	Libraries: QRCodeCanvas, react-qr-reader
+	•	Database: Firebase Firestore -->
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<!-- System Architecture -->
 
-### `npm test`
+<!-- Setup and Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Prerequisites
 
-### `npm run build`
+	•	Node.js (v14+)
+	•	Firebase Account
+	•	PayPal Developer Account -->
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<!-- Clone the directory to your local system -->
+<!-- cd  Payment_Backend-->
+<!-- npm install -->
+<!-- npm start -->
+<!-- open another terminal -->
+<!-- cd  payment-app-fronend-main-->
+<!-- npm install --legacy-peer-deps -->
+<!-- npm start -->
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<!-- Usage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+For Donors:
 
-### `npm run eject`
+	1.	Sign up or log in as a donor.
+	2.	Locate shelters using the geospatial map.
+	3.	Donate to a specific shelter and receive a QR Code Receipt.
+    4.  Hand it over to the homeless in need
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+For Shelter Staff:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+	1.	Sign up or log in as shelter staff.
+	2.	Mark the shelter’s location on Google Maps during registration.
+	3.	Scan QR codes to validate donations and claim funds via PayPal after logging in. -->

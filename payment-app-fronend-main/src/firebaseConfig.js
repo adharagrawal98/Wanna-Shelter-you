@@ -2,7 +2,6 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyBK7p7xGI8uDQVmwrQRi5bcbxsdQNSfAXo",
     authDomain: "charity-439513.firebaseapp.com",
@@ -13,11 +12,10 @@ const firebaseConfig = {
     measurementId: "G-XTTNQ4Q5TV"
 };
 
-// Initialize Firebase
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
-const db = getFirestore(app); // Initialize Firestore
+const db = getFirestore(app);
 
-// Export auth, provider, and db
-export { auth, provider, db }; // Export db along with auth and provider
+export { auth, provider, db }; 

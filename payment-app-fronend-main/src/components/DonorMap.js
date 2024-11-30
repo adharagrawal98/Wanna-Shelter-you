@@ -25,14 +25,14 @@ const getDistance = (lat1, lon1, lat2, lon2) => {
 
 const DonorMap = () => {
     const navigate = useNavigate();
-    const [selectedLocation, setSelectedLocation] = useState({ lat: 51.509865, lng: -0.118092 }); // Default to London
-    const [charityData, setCharityData] = useState([]);  // Store all shelter data here
-    const [selectedCharity, setSelectedCharity] = useState(null); // Selected shelter for InfoWindow
-    const [zoomLevel, setZoomLevel] = useState(12); // Default zoom level
-    const [googleLoaded, setGoogleLoaded] = useState(false);  // Track when Google API is loaded
-    const [selectedAddress, setSelectedAddress] = useState(''); // State for selected address
+    const [selectedLocation, setSelectedLocation] = useState({ lat: 51.509865, lng: -0.118092 });
+    const [charityData, setCharityData] = useState([]);
+    const [selectedCharity, setSelectedCharity] = useState(null);
+    const [zoomLevel, setZoomLevel] = useState(12);
+    const [googleLoaded, setGoogleLoaded] = useState(false);
+    const [selectedAddress, setSelectedAddress] = useState('');
 
-    // Fetch shelters from Firestore on component mount
+
     useEffect(() => {
         const fetchcharity = async () => {
             try {
@@ -48,7 +48,7 @@ const DonorMap = () => {
         fetchcharity();
     }, []);
 
-    // Function to handle navigation to the selected shelter's page
+
     const handleDonateNow = (charityID) => {
         localStorage.setItem("charityID", charityID);
         navigate(`/shelter/${charityID}`);
@@ -58,19 +58,19 @@ const DonorMap = () => {
     const filteredcharity = charityData.filter(charityData => {
         if (charityData.lat && charityData.lng && !isNaN(charityData.lat) && !isNaN(charityData.lng)) {
             const distance = getDistance(selectedLocation.lat, selectedLocation.lng, charityData.lat, charityData.lng);
-            return distance < 5000; // Only shelters within 5 km (5000 meters)
+            return distance < 5000;
         }
         return false;
     });
 
-    // Update zoom and map center when a location is selected
+
     const handleLocationChange = (location, address) => {
         setSelectedLocation(location);
-        setSelectedAddress(address); // Set the address when location changes
-        setZoomLevel(14); // Zoom in closer when a new location is selected
+        setSelectedAddress(address);
+        setZoomLevel(14);
     };
 
-    // Handle marker click and open the InfoWindow
+
     const handleMarkerClick = (charityData) => {
         if (selectedCharity && selectedCharity.id === charityData.id) {
             setSelectedCharity(null); // If clicking on the same marker, close the InfoWindow
@@ -82,7 +82,7 @@ const DonorMap = () => {
     // Check if Google Maps is fully loaded before rendering markers
     useEffect(() => {
         if (window.google) {
-            setGoogleLoaded(true);  // Mark Google API as loaded
+            setGoogleLoaded(true);
         }
     }, []);
 
@@ -97,15 +97,11 @@ const DonorMap = () => {
                     setSelectedAddress={setSelectedAddress}
                 />
             </div>
-
-            {/* Display selected address */}
             {selectedAddress && (
                 <div className="mb-4 text-lg">
                     <strong>Selected Address:</strong> {selectedAddress}
                 </div>
             )}
-
-            {/* Map Display */}
             <div className="w-full h-96 mb-4">
                 <LoadScript
                     googleMapsApiKey={REACT_APP_GOOGLE_MAPS_KEY}
@@ -126,7 +122,6 @@ const DonorMap = () => {
                                     url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png",
                                 }}
                             >
-                                {/* InfoWindowF inside Marker */}
                                 {selectedCharity && selectedCharity.id === charityData.id && (
                                     <InfoWindowF
                                         position={{ lat: charityData.lat, lng: charityData.lng }}

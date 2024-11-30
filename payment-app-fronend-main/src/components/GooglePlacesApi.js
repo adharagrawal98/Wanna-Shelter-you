@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import { REACT_APP_GOOGLE_MAPS_KEY } from "../constants/constants";
 
 const loadScript = (url, callback) => {
-  // Check if the script already exists
   if (document.querySelector(`script[src="${url}"]`)) {
     if (window.google) {
       callback();
@@ -31,8 +30,8 @@ const SearchLocationInput = ({ setSelectedLocation, setSelectedAddress }) => {
       const autocomplete = new window.google.maps.places.Autocomplete(
         autoCompleteRef.current,
         {
-          componentRestrictions: { country: "GB" }, // Restrict to the UK
-          fields: ["formatted_address", "geometry"], // Limit fields for efficiency
+          componentRestrictions: { country: "GB" },
+          fields: ["formatted_address", "geometry"],
         }
       );
 
@@ -65,7 +64,7 @@ const SearchLocationInput = ({ setSelectedLocation, setSelectedAddress }) => {
 
     return () => {
       if (autocompleteInstanceRef.current) {
-        autocompleteInstanceRef.current = null; // Clean up autocomplete instance
+        autocompleteInstanceRef.current = null;
       }
     };
   }, [initializeAutocomplete]);

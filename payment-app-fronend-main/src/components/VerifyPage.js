@@ -6,17 +6,19 @@ const VerifyPage = () => {
     const location = useLocation();
 
     const [loading, setLoading] = useState(true);
+    // eslint-disable-next-line 
     const [scannedData, setScannedData] = useState(null);
     const [charityData, setCharityData] = useState(null);
     const [verificationResult, setVerificationResult] = useState(null);
+    // eslint-disable-next-line 
     const [error, setError] = useState(null);
 
     useEffect(() => {
         const verifyData = async () => {
-            setLoading(true); // Start loading
+            setLoading(true);
             const charityIDParam = localStorage.getItem("charityID");
-
             if (location.state) {
+                // eslint-disable-next-line 
                 const { scannedData: scannedData, charityData: charityData } = location.state;
 
                 setScannedData(scannedData);
@@ -44,7 +46,7 @@ const VerifyPage = () => {
                 setError("No data provided for verification.");
             }
 
-            setLoading(false); // Stop loading
+            setLoading(false);
         };
 
         verifyData();
@@ -68,8 +70,6 @@ const VerifyPage = () => {
 
             const result = await response.json();
             console.log("PayPal capture response:", result);
-
-            // Redirect to success page with donation details
             navigate("/success-scan", {
                 state: {
                     charityName: charityData.charityName,

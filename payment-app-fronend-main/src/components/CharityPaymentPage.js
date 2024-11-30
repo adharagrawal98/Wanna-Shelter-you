@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { db } from '../firebaseConfig';
 import { doc, getDoc } from 'firebase/firestore';
-// import { QRCodeCanvas } from 'qrcode.react';  // Import QRCodeCanvas
 import PayPalButton from './PayPalButton';
 
 const CharityPaymentPage = () => {

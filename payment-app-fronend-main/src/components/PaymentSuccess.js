@@ -4,8 +4,6 @@ import { useNavigate } from "react-router-dom";
 const PaymentSuccess = () => {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
-
-    // Simulate processing timeout
     useEffect(() => {
         const timeout = setTimeout(() => {
             setLoading(false);

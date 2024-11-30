@@ -1,12 +1,12 @@
 import React from 'react';
-import { auth, provider } from '../firebaseConfig'; // Import Firebase auth and provider
+import { auth, provider } from '../firebaseConfig';
 import { signInWithPopup } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
 import Swal from 'sweetalert2';
 import signupImage from '../assets/Singup-image.jpg';
 
-const Login = ({ setUser, setUserRole }) => { // Accept props
+const Login = ({ setUser, setUserRole }) => {
     const navigate = useNavigate();
     const db = getFirestore();
 
@@ -15,13 +15,11 @@ const Login = ({ setUser, setUserRole }) => { // Accept props
             const result = await signInWithPopup(auth, provider);
             const user = result.user;
 
-            // Check Firestore for existing user
+
             const userDoc = await getDoc(doc(db, 'users', user.uid));
 
             if (userDoc.exists()) {
-                const existingRole = userDoc.data().role; // Get the user's role from Firestore
-
-                // Check if the selected role matches the existing role
+                const existingRole = userDoc.data().role;
                 if (existingRole !== selectedRole) {
                     // Role mismatch for the same account
                     Swal.fire({
@@ -30,19 +28,19 @@ const Login = ({ setUser, setUserRole }) => { // Accept props
                         icon: 'warning',
                         confirmButtonText: 'Okay'
                     });
-                    return; // Stop further execution, do not set user or role
+                    return;
                 }
 
                 // If roles match, proceed to set user and redirect based on the role
-                setUser(user); // Set user in App state
-                setUserRole(existingRole); // Update user role
+                setUser(user);
+                setUserRole(existingRole);
                 if (existingRole === "Donor") {
-                    navigate('/home'); // Redirect to donor home page
+                    navigate('/home');
                 } else if (existingRole === "Shelter Staff") {
-                    navigate('/shelter-dashboard'); // Redirect to shelter admin dashboard
+                    navigate('/shelter-dashboard');
                 }
-            } else {
-                // User does not exist in Firestore
+            }
+            else {
                 Swal.fire({
                     title: 'User Not Found',
                     text: 'No user found with this account. Please sign up first.',

@@ -7,20 +7,15 @@ const PaymentConfirmation = () => {
     const [status, setStatus] = useState("Processing payment...");
     const orderId = localStorage.getItem("paypalOrderId");
 
-    // get Order id form localStorage.setItem("paypalOrderId", orderId);
-
     useEffect(() => {
         const authorizePayment = async () => {
             try {
-                // Call the backend API to authorize the payment
                 const response = await axios.post(
                     `http://localhost:5001/api/paypal/authorize-payment/:orderId`,
                     { orderId }
                 );
 
                 const { authorizationId, status: paymentStatus } = response.data;
-
-                // Update status based on response
                 if (paymentStatus === "COMPLETED" || paymentStatus === "AUTHORIZED") {
                     setStatus("Payment successful!");
                 } else {

@@ -14,7 +14,6 @@ const ContactUs = () => {
         const body = encodeURIComponent("Please enter your query here...");
         const email = "adiagrawal323@gmail.com";
 
-        // Open the default email client
         window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
     };
 

@@ -125,7 +125,7 @@ const DonorMap = () => {
                                 {selectedCharity && selectedCharity.id === charityData.id && (
                                     <InfoWindowF
                                         position={{ lat: charityData.lat, lng: charityData.lng }}
-                                        onCloseClick={() => setSelectedCharity(null)} // Close InfoWindow on close button click
+                                        onCloseClick={() => setSelectedCharity(null)}
                                     >
                                         <div>
                                             <h3 className="text-lg font-semibold">{charityData.charityName}</h3>

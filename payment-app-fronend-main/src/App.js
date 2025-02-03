@@ -1,21 +1,20 @@
-// App.js
 import React, { useEffect, useState } from 'react';
 import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
-import { auth } from './firebaseConfig';
+import { auth } from './firebaseConfig.js';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import SignUp from './components/SignUp';
-import Login from './components/Login';
-import Home from './components/Home';
-import ShelterDashboard from './components/ShelterDashboard';
-import ContactForm from './components/ContactUs';
-import Testimonials from './components/Testimonials';
-import DonorMap from './components/DonorMap';
-import CharityPaymentPage from './components/CharityPaymentPage'
-import PaymentConfirmationPage from './components/PaymentConfirmationPage';
-import VerifyPage from './components/VerifyPage';
-import PaymentSuccess from './components/PaymentSuccess';
-import SuccessScan from './components/SuccessScan';
+import SignUp from './components/SignUp.js';
+import Login from './components/Login.js';
+import Home from './components/Home.js';
+import ShelterDashboard from './components/ShelterDashboard.js';
+import ContactForm from './components/ContactUs.js';
+import Testimonials from './components/Testimonials.js';
+import DonorMap from './components/DonorMap.js';
+import CharityPaymentPage from './components/CharityPaymentPage.js'
+import PaymentConfirmationPage from './components/PaymentConfirmationPage.js';
+import VerifyPage from './components/VerifyPage.js';
+import PaymentSuccess from './components/PaymentSuccess.js';
+import SuccessScan from './components/SuccessScan.js';
 
 const App = () => {
   const [user, setUser] = useState(null);
